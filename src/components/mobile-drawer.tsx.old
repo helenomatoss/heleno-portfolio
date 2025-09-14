@@ -1,0 +1,95 @@
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ThemeToggle } from "@/components/theme-toggle";
+import type { Route } from "next";
+
+type LinkItem = { href: Route; label: string };
+
+export function MobileDrawer({ links }: { links: LinkItem[] }) {
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Fecha ao mudar de rota
+  useEffect(() => {
+    if (open) setOpen(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
+  // Travar scroll do body quando aberto
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label="Open menu"
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        className="inline-flex items-center justify-center rounded-xl border border-app bg-card p-2"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+          <path fill="currentColor" d="M3 6h18v2H3V6Zm0 5h18v2H3v-2Zm0 5h18v2H3v-2Z" />
+        </svg>
+      </button>
+
+      {/* Overlay + Drawer */}
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-hidden={!open}
+        className={`fixed inset-0 z-[60] md:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+      >
+        {/* Backdrop com blur e opacidade moderada */}
+        <div
+          onClick={() => setOpen(false)}
+          className={`absolute inset-0 bg-black/30 supports-[backdrop-filter]:backdrop-blur-sm transition ${open ? "opacity-100" : "opacity-0"}`}
+        />
+
+        {/* Painel */}
+        <aside
+          className={`absolute right-0 top-0 h-full w-72 border-l border-app bg-card text-app shadow-app transition-transform duration-200 ${open ? "translate-x-0" : "translate-x-full"}`}
+        >
+          <div className="flex items-center justify-between border-b border-app px-4 py-3">
+            <span className="font-semibold">Menu</span>
+            <button
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+              className="rounded-lg border border-app bg-app/40 p-2"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M18.3 5.71 12 12l6.3 6.29-1.41 1.42L10.59 13.4 4.29 19.71 2.88 18.3 9.17 12 2.88 5.71 4.29 4.29 10.59 10.6l6.3-6.3z" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Toggle também dentro do menu */}
+          <div className="flex items-center justify-between px-4 py-3">
+            <span className="text-sm text-muted">Theme</span>
+            <ThemeToggle />
+          </div>
+
+          <nav className="grid gap-1 px-2 pb-6">
+            {links.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="rounded-lg px-3 py-2 text-app transition hover:bg-app/40"
+                onClick={() => setOpen(false)}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+        </aside>
+      </div>
+    </>
+  );
+}
