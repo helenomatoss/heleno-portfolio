@@ -1,6 +1,5 @@
 import Section from '@/components/section'
 import { Timeline } from '@/components/timeline'
-import { Button } from '@/components/ui/button'
 
 export const metadata = {
   title: 'About',
@@ -176,14 +175,6 @@ export default function AboutPage() {
               },
             ]}
           />
-
-          <div className="mt-8">
-            <Button asChild variant="outline">
-              <a href="/cv/heleno-vitor-matos-leite.pdf" download>
-                Download CV (PDF)
-              </a>
-            </Button>
-          </div>
         </div>
       </div>
     </Section>

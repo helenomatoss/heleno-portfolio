@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import Navbar from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { ThemeProvider } from '@/components/theme-provider'
+import { MatrixCodeRain } from '@/components/ui/matrix-code-rain'
 import { inter, outfit } from './fonts'
 
 export const metadata: Metadata = {
@@ -57,6 +58,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className={`min-h-screen bg-app text-app antialiased overflow-x-hidden ${inter.variable} ${outfit.variable} font-sans`}>
         <ThemeProvider>
+          <div className="fixed inset-0 -z-10 hidden opacity-60 dark:block" aria-hidden>
+            <MatrixCodeRain className="h-full w-full" />
+          </div>
           <Navbar />
           <main id="main-content">{children}</main>
           <Footer />

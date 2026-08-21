@@ -2,6 +2,7 @@ import Hero from '@/components/hero'
 import Section from '@/components/section'
 import { Reveal } from '@/components/reveal'
 import { Badge } from '@/components/ui/badge'
+import { OrbitingSkills } from '@/components/ui/orbiting-skills'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Home' }
@@ -14,7 +15,7 @@ const experience = [
     location: 'Dublin · Remote',
     stack: ['React', 'Next.js', 'Vue.js', 'Node.js', 'TypeScript'],
     practices: ['Client Delivery', 'UX Structure', 'Deployment', 'AI-Assisted Workflows'],
-    href: 'https://webgestsolutions.com',
+    href: 'https://webgestsolutions.com.br/',
   },
   {
     company: 'Odontoprev',
@@ -40,7 +41,7 @@ const work = [
     period: '2025 —',
     text: 'Freelance studio delivering end-to-end websites and web apps for international clients — planning, UX, development, and deployment.',
     stack: ['React', 'Next.js', 'Vue.js', 'Node.js'],
-    href: 'https://webgestsolutions.com',
+    href: 'https://webgestsolutions.com.br/',
   },
   {
     title: 'WhatsApp Lead Qualification Agent',
@@ -77,6 +78,15 @@ export default function HomePage() {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
+
+      <Section as="section" id="skills">
+        <Reveal>
+          <h2 className="text-2xl font-bold sm:text-3xl">Skills</h2>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <OrbitingSkills />
+        </Reveal>
+      </Section>
 
       <Section as="section" id="experience">
         <Reveal>
@@ -150,7 +160,7 @@ export default function HomePage() {
                     rel="noopener noreferrer"
                     className="mt-4 inline-flex items-center gap-1 text-sm underline underline-offset-4 text-muted hover:text-app focus:outline-none focus:ring-2 focus:ring-[var(--accent)] rounded"
                   >
-                    webgestsolutions.com ↗
+                    webgestsolutions.com.br ↗
                   </a>
                 ) : null}
               </div>

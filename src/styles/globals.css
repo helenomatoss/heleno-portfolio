@@ -17,8 +17,9 @@
 }
 
 .dark {
-  /* DARK THEME — legible */
-  --bg: #031A6B;
+  /* DARK THEME — legible. --bg is transparent so the Matrix code-rain
+     background (mounted in layout.tsx, dark mode only) shows through. */
+  --bg: transparent;
   --fg: #F8FAFC;
   --muted: rgba(248, 250, 252, 0.80);
   --card: rgba(255, 255, 255, 0.10);
