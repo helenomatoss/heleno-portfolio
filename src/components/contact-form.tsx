@@ -108,7 +108,7 @@ export default function ContactForm() {
             aria-describedby={errors.name ? 'name-error' : undefined}
           />
           {errors.name ? (
-            <p id="name-error" className="mt-1 text-sm text-red-300">
+            <p id="name-error" className="mt-1 text-sm text-red-600 dark:text-red-600 dark:text-red-300">
               {errors.name}
             </p>
           ) : null}
@@ -128,7 +128,7 @@ export default function ContactForm() {
             aria-describedby={errors.email ? 'email-error' : undefined}
           />
           {errors.email ? (
-            <p id="email-error" className="mt-1 text-sm text-red-300">
+            <p id="email-error" className="mt-1 text-sm text-red-600 dark:text-red-300">
               {errors.email}
             </p>
           ) : null}
@@ -148,7 +148,7 @@ export default function ContactForm() {
           />
           <p className="mt-1 text-xs text-muted">Briefly describe your project or question.</p>
           {errors.message ? (
-            <p id="message-error" className="mt-1 text-sm text-red-300">
+            <p id="message-error" className="mt-1 text-sm text-red-600 dark:text-red-300">
               {errors.message}
             </p>
           ) : null}
@@ -176,9 +176,9 @@ export default function ContactForm() {
           className="min-h-5 text-sm"
         >
           {status === 'success' ? (
-            <span className="text-emerald-300">{serverMessage}</span>
+            <span className="text-emerald-600 dark:text-emerald-300">{serverMessage}</span>
           ) : status === 'error' ? (
-            <span className="text-red-300">{serverMessage}</span>
+            <span className="text-red-600 dark:text-red-300">{serverMessage}</span>
           ) : null}
         </div>
         <p className="text-xs text-muted">Handled by Formspree via secure POST.</p>

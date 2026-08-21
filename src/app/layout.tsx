@@ -9,11 +9,11 @@ import { inter, outfit } from './fonts'
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: {
-    default: 'Heleno Vitor Matos Leite — Front-End Developer (Vue.js, Ionic, JavaScript)',
+    default: 'Heleno Vitor Matos Leite — Full-Stack Developer (React, Next.js, Node.js)',
     template: '%s — Heleno Vitor Matos Leite',
   },
   description:
-    'Front-end developer based in Dublin. Clean, accessible UIs. Contributed to an e-commerce redesign at Odontoprev, building reusable Vue components and improving performance on mobile.',
+    'Full-stack developer based in Dublin, building modern web apps with React, Next.js, Node.js, and TypeScript — AI-assisted development, from freelance delivery at Webgest Solutions to production e-commerce experience at Odontoprev.',
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
@@ -29,16 +29,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Heleno Vitor Matos Leite — Front-End Developer',
+    title: 'Heleno Vitor Matos Leite — Full-Stack Developer',
     description:
-      'Front-end developer based in Dublin. Vue.js, Ionic, JavaScript. Accessible UI and mobile performance.',
-    images: ['/og.png'],
+      'React, Next.js, Node.js, TypeScript. AI-assisted development, accessible UI, and production delivery.',
+    images: ['/og'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Heleno Vitor Matos Leite — Front-End Developer',
-    description: 'Vue.js, Ionic, JavaScript. Accessible UI and mobile performance.',
-    images: ['/og.png'],
+    title: 'Heleno Vitor Matos Leite — Full-Stack Developer',
+    description: 'React, Next.js, Node.js, TypeScript. AI-assisted development and production delivery.',
+    images: ['/og'],
   },
   verification: {
     other: { 'google-site-verification': 'REPLACE_IF_NEEDED' },
@@ -63,7 +63,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </ThemeProvider>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Person', name: 'Heleno Vitor Matos Leite' }) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Person', name: 'Heleno Vitor Matos Leite', jobTitle: 'Full-Stack Developer' }) }}
         />
       </body>
     </html>

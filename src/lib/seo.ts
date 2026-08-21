@@ -3,16 +3,16 @@ export function personJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Heleno Vitor Matos Leite',
-    jobTitle: 'Front-End Developer — Vue.js · Ionic · JavaScript',
+    jobTitle: 'Full-Stack Developer — React · Next.js · Node.js',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Dublin',
       addressCountry: 'IE',
     },
-    url: 'https://example.com',
+    url: 'https://heleno-portfolio.vercel.app',
     sameAs: [
-      'https://github.com/your-github',
-      'https://www.linkedin.com/in/your-linkedin',
+      'https://github.com/helenomatoss',
+      'https://www.linkedin.com/in/heleno-vitor-matos-leite-993684211/',
     ],
   }
   return JSON.stringify(data)

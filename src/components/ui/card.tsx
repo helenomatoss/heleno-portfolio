@@ -17,7 +17,7 @@ const CardTitle = ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElem
 )
 
 const CardDescription = ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-  <p className={cn('text-sm text-slate-300', className)} {...props} />
+  <p className={cn('text-sm text-muted', className)} {...props} />
 )
 
 const CardContent = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => (

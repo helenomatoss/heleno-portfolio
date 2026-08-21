@@ -30,10 +30,10 @@ export async function GET() {
             Heleno Vitor Matos Leite
           </div>
           <div style={{ marginTop: 12, fontSize: 36, opacity: 0.95 }}>
-            Front-End Developer — Vue.js · Ionic · JavaScript
+            Full-Stack Developer — React · Next.js · Node.js
           </div>
           <div style={{ marginTop: 24, fontSize: 26, opacity: 0.85 }}>
-            Clean, accessible UIs. Mobile performance. Based in Dublin.
+            AI-assisted development. Accessible UI. Based in Dublin.
           </div>
         </div>
       </div>

@@ -85,3 +85,19 @@ h1, h2, h3, h4, h5, h6 {
               linear-gradient(180deg, #F7FAFF 0%, #EEF4FB 100%);
 }
 html.dark .theme-light-hero { background: none; }
+
+/* Tech grid, fades toward the edges so it reads as texture, not noise */
+.bg-grid-fade {
+  background-image: radial-gradient(rgba(3, 26, 107, 0.16) 1px, transparent 1px);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 65% at 50% 0%, #000 40%, transparent 100%);
+}
+html.dark .bg-grid-fade {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+}
+
+/* Monospace tag used for status pills / code-like accents */
+.font-mono-tech {
+  font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
+}
