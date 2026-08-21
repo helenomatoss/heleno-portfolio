@@ -19,8 +19,7 @@ export default function AboutPage() {
         workflows (Claude, ChatGPT) to move faster without cutting corners. Earlier, at
         Odontoprev, I helped rebuild a large-scale e-commerce platform in Vue.js and
         shipped mobile features with the Ionic Framework. I&apos;m currently completing a
-        BSc in Computing at Dorset College Dublin, and I&apos;m actively open to
-        opportunities in Portugal and Spain, with immediate availability to relocate.
+        BSc in Computing at Dorset College Dublin.
       </p>
 
       <div className="mt-6">

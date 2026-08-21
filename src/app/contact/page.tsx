@@ -12,9 +12,8 @@ export default function ContactPage() {
     <Section>
       <h1 className="text-3xl font-bold">Contact</h1>
       <p className="mt-2 text-muted">
-        Let’s connect. I’m open to full-stack opportunities in Portugal and Spain, with
-        immediate availability to relocate — and to interesting remote work in the
-        meantime.
+        Have a project, a piece of code, or just want to say hi? Reach out through any of
+        the channels below.
       </p>
       <div className="mt-8 grid gap-6 md:grid-cols-2">
         <ContactCards />
