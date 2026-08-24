@@ -1,6 +1,7 @@
 import Hero from '@/components/hero'
 import Section from '@/components/section'
 import { Reveal } from '@/components/reveal'
+import { SectionHeading } from '@/components/section-heading'
 import { Badge } from '@/components/ui/badge'
 import { OrbitingSkills } from '@/components/ui/orbiting-skills'
 import type { Metadata } from 'next'
@@ -80,22 +81,18 @@ export default function HomePage() {
       />
 
       <Section as="section" id="skills">
-        <Reveal>
-          <h2 className="text-2xl font-bold sm:text-3xl">Skills</h2>
-        </Reveal>
+        <SectionHeading eyebrow="01 · SKILLS" title="Skills" />
         <Reveal delay={0.1}>
           <OrbitingSkills />
         </Reveal>
       </Section>
 
       <Section as="section" id="experience">
-        <Reveal>
-          <h2 className="text-2xl font-bold sm:text-3xl">Experience</h2>
-        </Reveal>
+        <SectionHeading eyebrow="02 · EXPERIENCE" title="Experience" />
         <div className="mt-8 space-y-6">
           {experience.map((e, i) => (
             <Reveal key={`${e.company}-${e.role}`} delay={i * 0.06}>
-              <div className="glass rounded-2xl p-6">
+              <div className="glass rounded-2xl p-6 transition-transform duration-300 motion-safe:hover:-translate-y-1 hover:shadow-app">
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                   <h3 className="text-lg font-semibold">
                     {e.role} —{' '}
@@ -138,13 +135,11 @@ export default function HomePage() {
       </Section>
 
       <Section as="section" className="scroll-mt-24" id="work">
-        <Reveal>
-          <h2 className="text-2xl font-bold sm:text-3xl">Work</h2>
-        </Reveal>
+        <SectionHeading eyebrow="03 · WORK" title="Work" />
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {work.map((w, i) => (
             <Reveal key={w.title} delay={i * 0.08} className="h-full">
-              <div className="glass flex h-full flex-col rounded-2xl p-6">
+              <div className="glass flex h-full flex-col rounded-2xl p-6 transition-transform duration-300 motion-safe:hover:-translate-y-1 hover:shadow-app">
                 <p className="font-mono-tech text-xs text-muted">{w.period}</p>
                 <h3 className="mt-1 text-lg font-semibold">{w.title}</h3>
                 <p className="mt-3 flex-1 text-sm text-app">{w.text}</p>

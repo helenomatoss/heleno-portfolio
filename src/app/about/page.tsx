@@ -1,5 +1,7 @@
 import Section from '@/components/section'
 import { Timeline } from '@/components/timeline'
+import { Reveal } from '@/components/reveal'
+import { SectionHeading } from '@/components/section-heading'
 
 export const metadata = {
   title: 'About',
@@ -9,46 +11,50 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <Section>
-      <h1 className="text-3xl font-bold">About</h1>
-      <p className="mt-4 max-w-3xl text-app">
-        I&apos;m a Full-Stack Developer based in Dublin, Ireland, with 5+ years of
-        hands-on experience building and shipping production web applications. I
-        co-founded Webgest Solutions, a freelance studio delivering end-to-end websites
-        and web apps with React, Next.js, Vue.js, and Node.js — using AI-assisted
-        workflows (Claude, ChatGPT) to move faster without cutting corners. Earlier, at
-        Odontoprev, I helped rebuild a large-scale e-commerce platform in Vue.js and
-        shipped mobile features with the Ionic Framework. I&apos;m currently completing a
-        BSc in Computing at Dorset College Dublin.
-      </p>
+      <SectionHeading as="h1" eyebrow="ABOUT ME" title="About" />
+      <Reveal delay={0.05}>
+        <p className="mt-4 max-w-3xl text-app">
+          I&apos;m a Full-Stack Developer based in Dublin, Ireland, with 5+ years of
+          hands-on experience building and shipping production web applications. I
+          co-founded Webgest Solutions, a freelance studio delivering end-to-end websites
+          and web apps with React, Next.js, Vue.js, and Node.js — using AI-assisted
+          workflows (Claude, ChatGPT) to move faster without cutting corners. Earlier, at
+          Odontoprev, I helped rebuild a large-scale e-commerce platform in Vue.js and
+          shipped mobile features with the Ionic Framework. I&apos;m currently completing a
+          BSc in Computing at Dorset College Dublin.
+        </p>
+      </Reveal>
 
-      <div className="mt-6">
-        <h2 className="text-xl font-semibold">Highlights</h2>
-        <ul className="mt-3 list-disc space-y-1 pl-6 text-app">
-          <li>
-            <span className="font-medium">Frontend:</span> React, Next.js, Vue.js (2/3),
-            Ionic, TypeScript, JavaScript (ES6+), Tailwind CSS
-          </li>
-          <li>
-            <span className="font-medium">Backend &amp; Tooling:</span> Node.js, REST
-            APIs, Git/GitHub, Vercel
-          </li>
-          <li>
-            <span className="font-medium">AI-Assisted Development:</span> Claude and
-            ChatGPT for code generation, automation, and content workflows
-          </li>
-          <li>
-            <span className="font-medium">Practices:</span> Responsive &amp; Accessible
-            UI, Agile/Scrum, cross-functional collaboration with international clients
-          </li>
-          <li>
-            <span className="font-medium">Languages:</span> Portuguese (native), English
-            (full professional), Spanish (elementary)
-          </li>
-        </ul>
-      </div>
+      <Reveal delay={0.1} className="mt-6">
+        <div>
+          <h2 className="text-xl font-semibold">Highlights</h2>
+          <ul className="mt-3 list-disc space-y-1 pl-6 text-app">
+            <li>
+              <span className="font-medium">Frontend:</span> React, Next.js, Vue.js (2/3),
+              Ionic, TypeScript, JavaScript (ES6+), Tailwind CSS
+            </li>
+            <li>
+              <span className="font-medium">Backend &amp; Tooling:</span> Node.js, REST
+              APIs, Git/GitHub, Vercel
+            </li>
+            <li>
+              <span className="font-medium">AI-Assisted Development:</span> Claude and
+              ChatGPT for code generation, automation, and content workflows
+            </li>
+            <li>
+              <span className="font-medium">Practices:</span> Responsive &amp; Accessible
+              UI, Agile/Scrum, cross-functional collaboration with international clients
+            </li>
+            <li>
+              <span className="font-medium">Languages:</span> Portuguese (native), English
+              (full professional), Spanish (elementary)
+            </li>
+          </ul>
+        </div>
+      </Reveal>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-2">
-        <div>
+        <Reveal delay={0.05}>
           <h2 className="mb-4 text-xl font-semibold">Experience</h2>
           <Timeline
             items={[
@@ -121,9 +127,9 @@ export default function AboutPage() {
               },
             ]}
           />
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={0.1}>
           <h2 className="mb-4 text-xl font-semibold">Education</h2>
           <Timeline
             items={[
@@ -175,7 +181,7 @@ export default function AboutPage() {
               },
             ]}
           />
-        </div>
+        </Reveal>
       </div>
     </Section>
   )

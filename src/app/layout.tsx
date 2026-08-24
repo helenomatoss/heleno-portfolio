@@ -5,6 +5,8 @@ import Navbar from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { ThemeProvider } from '@/components/theme-provider'
 import { MatrixCodeRain } from '@/components/ui/matrix-code-rain'
+import { ScrollProgress } from '@/components/scroll-progress'
+import { PageTransition } from '@/components/page-transition'
 import { inter, outfit } from './fonts'
 
 export const metadata: Metadata = {
@@ -61,8 +63,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <div className="fixed inset-0 -z-10 hidden opacity-25 dark:block" aria-hidden>
             <MatrixCodeRain className="h-full w-full" />
           </div>
+          <ScrollProgress />
           <Navbar />
-          <main id="main-content">{children}</main>
+          <main id="main-content">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
         </ThemeProvider>
         <script

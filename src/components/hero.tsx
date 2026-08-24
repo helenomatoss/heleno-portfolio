@@ -21,7 +21,10 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden theme-light-hero">
       <div className="absolute inset-0 bg-grid-fade" aria-hidden />
-      <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-[var(--accent)]/20 blur-3xl" aria-hidden />
+      <div
+        className="absolute left-1/2 top-0 h-72 w-[28rem] -translate-x-1/2 -translate-y-1/3 rounded-full bg-[var(--accent)]/20 blur-3xl"
+        aria-hidden
+      />
       <div className="container relative py-12 sm:py-16 md:py-24">
         <div className="mx-auto max-w-3xl text-center">
           <motion.h1
@@ -71,9 +74,15 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
-      <div className="container relative pb-12">
-        <TrustedSkillsStrip />
-      </div>
+      <motion.div
+        className="container relative pb-12"
+        {...fadeUp}
+        transition={{ duration: 0.6, delay: 0.25 }}
+      >
+        <div className="mx-auto max-w-3xl">
+          <TrustedSkillsStrip />
+        </div>
+      </motion.div>
     </section>
   )
 }

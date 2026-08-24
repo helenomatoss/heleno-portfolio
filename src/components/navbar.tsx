@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 import ThemeToggle from "@/components/theme-toggle";
 import { Menu, X } from "lucide-react";
 import Portal from "@/components/portal";
@@ -121,11 +122,18 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-md px-2 py-1 text-sm transition ${
-                  isActive ? "font-semibold" : "text-muted hover:text-app"
+                className={`relative rounded-md px-2 py-1 text-sm transition ${
+                  isActive ? "font-semibold text-app" : "text-muted hover:text-app"
                 }`}
               >
                 {item.label}
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active-indicator"
+                    className="absolute -bottom-1 left-2 right-2 h-[2px] rounded-full bg-[var(--accent)]"
+                    transition={{ type: "spring", stiffness: 380, damping: 32 }}
+                  />
+                )}
               </Link>
             )
           })}

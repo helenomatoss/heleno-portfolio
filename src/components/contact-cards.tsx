@@ -34,7 +34,7 @@ export function ContactCards() {
           href={it.href}
           target={it.href.startsWith("http") ? "_blank" : undefined}
           rel={it.href.startsWith("http") ? "noopener noreferrer" : undefined}
-          className="group rounded-2xl border border-app bg-card p-5 backdrop-blur transition hover:shadow-app focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          className="group rounded-2xl border border-app bg-card p-5 backdrop-blur transition-all duration-300 hover:shadow-app motion-safe:hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
           aria-label={`${it.title}: ${it.subtitle ?? it.href}`}
         >
           <div className="flex items-center gap-3">
