@@ -58,7 +58,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className={`min-h-screen bg-app text-app antialiased overflow-x-hidden ${inter.variable} ${outfit.variable} font-sans`}>
         <ThemeProvider>
-          <div className="fixed inset-0 -z-10 hidden opacity-60 dark:block" aria-hidden>
+          <div className="fixed inset-0 -z-10 hidden opacity-25 dark:block" aria-hidden>
             <MatrixCodeRain className="h-full w-full" />
           </div>
           <Navbar />

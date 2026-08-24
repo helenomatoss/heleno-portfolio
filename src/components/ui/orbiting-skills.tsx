@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useState, memo, type ReactElement } from 'react'
-import { useReducedMotion } from 'framer-motion'
 
 type IconType =
   | 'html'
@@ -233,12 +232,11 @@ const orbitRings: Array<{ radius: number; glowColor: GlowColor }> = [
 ]
 
 export function OrbitingSkills() {
-  const prefersReducedMotion = useReducedMotion()
   const [time, setTime] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
 
   useEffect(() => {
-    if (isPaused || prefersReducedMotion) return
+    if (isPaused) return
 
     let animationFrameId: number
     let lastTime = performance.now()
@@ -252,7 +250,7 @@ export function OrbitingSkills() {
 
     animationFrameId = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(animationFrameId)
-  }, [isPaused, prefersReducedMotion])
+  }, [isPaused])
 
   return (
     <div
@@ -283,7 +281,7 @@ export function OrbitingSkills() {
       ))}
 
       {skillsConfig.map((config) => {
-        const angle = (prefersReducedMotion ? 0 : time) * config.speed + config.phaseShift
+        const angle = time * config.speed + config.phaseShift
         return <OrbitingSkill key={config.id} config={config} angle={angle} />
       })}
     </div>

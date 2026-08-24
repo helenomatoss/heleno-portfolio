@@ -1,5 +1,4 @@
 "use client"
-import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Button } from './ui/button'
 import Link from 'next/link'
@@ -23,8 +22,8 @@ export default function Hero() {
     <section className="relative overflow-hidden theme-light-hero">
       <div className="absolute inset-0 bg-grid-fade" aria-hidden />
       <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-[var(--accent)]/20 blur-3xl" aria-hidden />
-      <div className="container relative grid items-center gap-8 md:gap-12 py-12 sm:py-16 md:grid-cols-2 md:py-24">
-        <div>
+      <div className="container relative py-12 sm:py-16 md:py-24">
+        <div className="mx-auto max-w-3xl text-center">
           <motion.h1
             className="font-extrabold text-4xl tracking-tight sm:text-5xl md:text-6xl"
             {...fadeUp}
@@ -40,7 +39,7 @@ export default function Hero() {
             Full-Stack Developer — React · Next.js · Node.js · TypeScript
           </motion.p>
           <motion.ul
-            className="mt-6 max-w-xl space-y-2 text-muted"
+            className="mx-auto mt-6 max-w-xl space-y-2 text-left text-muted"
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
@@ -52,7 +51,7 @@ export default function Hero() {
             ))}
           </motion.ul>
           <motion.div
-            className="mt-6 flex gap-3"
+            className="mt-6 flex justify-center gap-3"
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
@@ -70,21 +69,6 @@ export default function Hero() {
           >
             <TechBadges />
           </motion.div>
-        </div>
-        <div className="relative mx-auto">
-          <div className="absolute -inset-3 rounded-3xl bg-[var(--accent)]/20 blur-xl" aria-hidden />
-          <div className="flex items-center justify-center">
-            <Image
-              src="/images/profile-heleno.jpg"
-              alt="Portrait of Heleno Vitor Matos Leite"
-              width={320}
-              height={320}
-              priority
-              sizes="(max-width: 768px) 220px, 320px"
-              style={{ height: 'auto' }}
-              className="rounded-2xl object-cover"
-            />
-          </div>
         </div>
       </div>
       <div className="container relative pb-12">
