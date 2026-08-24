@@ -26,7 +26,7 @@ export default function AboutPage() {
       </Reveal>
 
       <Reveal delay={0.1} className="mt-6">
-        <div>
+        <div className="glass rounded-2xl p-6">
           <h2 className="text-xl font-semibold">Highlights</h2>
           <ul className="mt-3 list-disc space-y-1 pl-6 text-app">
             <li>
@@ -53,7 +53,7 @@ export default function AboutPage() {
         </div>
       </Reveal>
 
-      <div className="mt-10 grid gap-10 lg:grid-cols-2">
+      <div className="mt-10 grid gap-10 border-t border-app pt-10 lg:grid-cols-2">
         <Reveal delay={0.05}>
           <h2 className="mb-4 text-xl font-semibold">Experience</h2>
           <Timeline

@@ -1,4 +1,3 @@
-import { Badge } from './ui/badge'
 import { TechStrip } from './tech-strip'
 
 const techs = [
@@ -44,16 +43,6 @@ const techs = [
       </svg>
     ) },
 ]
-
-export function TechBadges() {
-  return (
-    <div className="flex flex-wrap gap-2" aria-label="Highlights">
-      {['React', 'Next.js', 'Node.js', 'TypeScript', 'AI-Assisted Dev'].map((t) => (
-        <Badge key={t}>{t}</Badge>
-      ))}
-    </div>
-  )
-}
 
 export function TrustedSkillsStrip() {
   return (

@@ -2,42 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme tokens via CSS variables */
+/* Theme tokens via CSS variables — zinc-based neutral palette, blue used sparingly as accent */
 :root {
-  /* LIGHT THEME — high contrast */
-  --bg: #F4F7FB;
-  --fg: #0B1220;
-  --muted: #475569;
-  --card: #FFFFFF;
-  --border: rgba(2, 6, 23, 0.08);
-  --accent: #05B2DC;
-  --accent-strong: #0B7CA7;
-  --navy: #031A6B;
-  --shadow: 0 10px 30px rgba(2, 6, 23, 0.10);
+  /* LIGHT THEME */
+  --bg: #ffffff;
+  --fg: #09090b;
+  --muted: #71717a;
+  --card: #f4f4f5;
+  --border: #e4e4e7;
+  --accent: #3b82f6;
+  --accent-strong: #2563eb;
+  --navy: #ffffff;
+  --shadow: 0 10px 30px rgba(9, 9, 11, 0.08);
 }
 
 .dark {
-  /* DARK THEME — legible. --bg is transparent so the Matrix code-rain
-     background (mounted in layout.tsx, dark mode only) shows through. */
-  --bg: transparent;
-  --fg: #F8FAFC;
-  --muted: rgba(248, 250, 252, 0.80);
-  --card: rgba(255, 255, 255, 0.10);
-  --border: rgba(255, 255, 255, 0.16);
-  --accent: #05B2DC;
-  --accent-strong: #0B7CA7;
-  --navy: #031A6B;
-  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  /* DARK THEME */
+  --bg: #09090b;
+  --fg: #fafafa;
+  --muted: #a1a1aa;
+  --card: #18181b;
+  --border: #27272a;
+  --accent: #3b82f6;
+  --accent-strong: #60a5fa;
+  --navy: #ffffff;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 html { color-scheme: light dark; }
 html.dark { color-scheme: dark; }
 html:not(.dark) { color-scheme: light; }
-
-/* Global base */
-body {
-  font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
-}
 
 /* Anti-overflow */
 html, body { overflow-x: hidden; }
@@ -47,13 +41,9 @@ html, body { overflow-x: hidden; }
 /* Media defaults to prevent overflow */
 img, video, svg { max-width: 100%; height: auto; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-outfit), ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
-}
-
 /* Focus styles */
 :where(a, button, input, textarea, select) {
-  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900;
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg)];
 }
 
 /* Prose overrides adapt to variables */
@@ -66,8 +56,8 @@ h1, h2, h3, h4, h5, h6 {
   --tw-prose-code: var(--fg);
 }
 
-/* Shimmer/utility */
-.glass { background: var(--card); border: 1px solid var(--border); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: theme(borderRadius.2xl); }
+/* Hairline-bordered card, matching the reference's bento-grid identity cards */
+.glass { background: var(--card); border: 1px solid var(--border); border-radius: theme(borderRadius.2xl); }
 
 /* App utilities */
 .bg-app { background: var(--bg); }
@@ -76,29 +66,33 @@ h1, h2, h3, h4, h5, h6 {
 .bg-card { background: var(--card); }
 .border-app { border-color: var(--border); }
 .shadow-app { box-shadow: var(--shadow); }
-.btn-accent { background: var(--accent); color: #0B1220; }
+.btn-accent { background: var(--accent); color: #ffffff; }
 .btn-accent:hover { background: var(--accent-strong); }
 .bg-accent { background-color: var(--accent); }
 
-/* Light hero background */
-.theme-light-hero {
-  background: radial-gradient(1200px 600px at 0% 0%, rgba(5,178,220,.14), transparent 60%),
-              linear-gradient(180deg, #F7FAFF 0%, #EEF4FB 100%);
-}
-html.dark .theme-light-hero { background: none; }
-
-/* Tech grid, fades toward the edges so it reads as texture, not noise */
+/* Subtle dot-grid texture, fades toward the edges so it reads as texture, not noise */
 .bg-grid-fade {
-  background-image: radial-gradient(rgba(3, 26, 107, 0.16) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(9, 9, 11, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
   -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 0%, #000 40%, transparent 100%);
   mask-image: radial-gradient(ellipse 70% 65% at 50% 0%, #000 40%, transparent 100%);
 }
 html.dark .bg-grid-fade {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(250, 250, 250, 0.08) 1px, transparent 1px);
 }
 
-/* Monospace tag used for status pills / code-like accents */
+/* Diagonal hairline hatch, used as a decorative section-corner texture */
+.bg-hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--border),
+    var(--border) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+/* Monospace tag used for eyebrow labels, timestamps, and code-like accents */
 .font-mono-tech {
-  font-family: ui-monospace, SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, monospace;
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }

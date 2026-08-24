@@ -19,7 +19,7 @@ export function Timeline({ items }: { items: Item[] }) {
           <div className="relative">
             <span
               aria-hidden="true"
-              className="absolute left-1/2 top-2 size-3 -translate-x-1/2 rounded-full bg-[var(--accent)] ring-4 ring-[var(--bg)] dark:ring-[#033860]"
+              className="absolute left-1/2 top-2 size-3 -translate-x-1/2 rounded-full bg-[var(--accent)] ring-4 ring-[var(--bg)]"
             />
           </div>
           {/* gutter */}

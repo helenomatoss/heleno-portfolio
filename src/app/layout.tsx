@@ -4,10 +4,9 @@ import type { ReactNode } from 'react'
 import Navbar from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { ThemeProvider } from '@/components/theme-provider'
-import { MatrixCodeRain } from '@/components/ui/matrix-code-rain'
 import { ScrollProgress } from '@/components/scroll-progress'
 import { PageTransition } from '@/components/page-transition'
-import { inter, outfit } from './fonts'
+import { geistSans, geistMono } from './fonts'
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
@@ -23,8 +22,8 @@ export const metadata: Metadata = {
     apple: '/apple-touch-icon.png',
   },
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F4F7FB' },
-    { media: '(prefers-color-scheme: dark)', color: '#031A6B' },
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#09090b' },
   ],
   alternates: {
     canonical: '/',
@@ -54,15 +53,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <head>
         <meta name="google" content="notranslate" />
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
       </head>
-      <body className={`min-h-screen bg-app text-app antialiased overflow-x-hidden ${inter.variable} ${outfit.variable} font-sans`}>
+      <body className={`min-h-screen bg-app text-app antialiased overflow-x-hidden ${geistSans.variable} ${geistMono.variable} font-sans`}>
         <ThemeProvider>
-          <div className="fixed inset-0 -z-10 hidden opacity-25 dark:block" aria-hidden>
-            <MatrixCodeRain className="h-full w-full" />
-          </div>
           <ScrollProgress />
           <Navbar />
           <main id="main-content">

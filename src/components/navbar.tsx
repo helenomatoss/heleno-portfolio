@@ -91,7 +91,7 @@ export default function Navbar() {
           aria-label="Go to homepage"
         >
           <span
-            className="notranslate grid h-8 w-8 place-items-center rounded-full bg-accent font-extrabold text-[#031A6B]"
+            className="notranslate grid h-8 w-8 place-items-center rounded-full bg-accent font-extrabold text-[var(--navy)]"
             translate="no"
           >
             HV

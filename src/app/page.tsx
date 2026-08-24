@@ -80,14 +80,14 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
       />
 
-      <Section as="section" id="skills">
+      <Section as="section" id="skills" className="border-t border-app">
         <SectionHeading eyebrow="01 · SKILLS" title="Skills" />
         <Reveal delay={0.1}>
           <OrbitingSkills />
         </Reveal>
       </Section>
 
-      <Section as="section" id="experience">
+      <Section as="section" id="experience" className="border-t border-app">
         <SectionHeading eyebrow="02 · EXPERIENCE" title="Experience" />
         <div className="mt-8 space-y-6">
           {experience.map((e, i) => (
@@ -134,7 +134,7 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section as="section" className="scroll-mt-24" id="work">
+      <Section as="section" className="scroll-mt-24 border-t border-app" id="work">
         <SectionHeading eyebrow="03 · WORK" title="Work" />
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {work.map((w, i) => (
