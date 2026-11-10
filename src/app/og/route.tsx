@@ -3,7 +3,6 @@ import { ImageResponse } from '@vercel/og'
 export const runtime = 'edge'
 
 export async function GET() {
-  const grad = 'linear-gradient(90deg,#031A6B 0%,#004385 60%,#05B2DC 100%)'
   return new ImageResponse(
     (
       <div
@@ -11,34 +10,24 @@ export async function GET() {
           height: '100%',
           width: '100%',
           display: 'flex',
-          alignItems: 'center',
+          flexDirection: 'column',
           justifyContent: 'center',
-          backgroundImage: grad,
+          padding: '80px',
+          background: '#09090b',
+          color: '#fafafa',
+          fontFamily: 'Inter, ui-sans-serif, system-ui',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            color: 'white',
-            width: '1200px',
-            padding: '60px',
-            fontFamily: 'Inter, ui-sans-serif, system-ui',
-          }}
-        >
-          <div style={{ fontSize: 78, fontWeight: 800, lineHeight: 1.1 }}>
-            Heleno Vitor Matos Leite
-          </div>
-          <div style={{ marginTop: 12, fontSize: 36, opacity: 0.95 }}>
-            Front-End Developer — Vue.js · Ionic · JavaScript
-          </div>
-          <div style={{ marginTop: 24, fontSize: 26, opacity: 0.85 }}>
-            Clean, accessible UIs. Mobile performance. Based in Dublin.
-          </div>
+        <div style={{ fontSize: 26, color: '#a1a1aa', display: 'flex' }}>heleno.matos — full-stack developer · Dublin</div>
+        <div style={{ marginTop: 28, fontSize: 76, fontWeight: 700, lineHeight: 1.05, display: 'flex', flexDirection: 'column' }}>
+          <span>I build web apps</span>
+          <span style={{ color: '#a1a1aa' }}>and the automation behind them.</span>
+        </div>
+        <div style={{ marginTop: 40, fontSize: 26, color: '#60a5fa', display: 'flex' }}>
+          React · Vue.js · TypeScript · Node.js · Docker · PostgreSQL · n8n
         </div>
       </div>
     ),
     { width: 1200, height: 630 }
   )
 }
-

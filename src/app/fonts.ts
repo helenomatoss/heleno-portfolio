@@ -1,14 +1,13 @@
-import { Inter, Outfit } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 
-export const inter = Inter({
+export const sans = Inter({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-sans',
   display: 'swap',
 })
 
-export const outfit = Outfit({
+export const mono = JetBrains_Mono({
   subsets: ['latin'],
-  variable: '--font-outfit',
+  variable: '--font-mono',
   display: 'swap',
 })
-

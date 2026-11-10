@@ -8,6 +8,7 @@ export type ProjectFrontmatter = {
   summary: string
   stack: string[]
   role: string
+  context?: string
   impact?: string[]
   links?: { repo?: string; demo?: string }
   cover?: string

@@ -1,0 +1,57 @@
+---
+title: "AI WhatsApp lead-qualification agent"
+date: "2026-08-20"
+summary: "A self-hosted agent that answers new leads on WhatsApp, collects what the business needs and hands the chat to a human without anyone typing a command."
+stack: ["Docker", "Evolution API", "n8n", "Google Gemini", "PostgreSQL"]
+role: "Designed and built end to end"
+context: "Webgest Solutions"
+links: {}
+---
+
+## The problem
+
+Webgest gets new leads through WhatsApp. Someone has to answer fast, understand what the person wants and collect their details before a human takes over. Doing that by hand means slow replies outside working hours.
+
+The goal was an agent that does **only the first contact** well: greet, understand the need, collect name, request and contact, then step aside.
+
+## Architecture
+
+Everything runs self-hosted in Docker.
+
+- **Evolution API** connects the WhatsApp number and sends every incoming message to a webhook.
+- **n8n** runs the workflow: extract the sender and message type, check whether a human is already handling this chat, call the AI agent, and send the reply.
+- **Google Gemini** is the language model behind the agent, with conversation memory kept per phone number.
+- **PostgreSQL** stores conversation state for the human handoff.
+
+Long answers are split into several short messages with a small delay between them, so the conversation feels like WhatsApp and not like an email.
+
+## Human handoff without commands
+
+The first version used text commands like `#takeover` typed into the chat. The problem: the **customer could see them**. Not professional.
+
+The final design is invisible to the customer:
+
+- When the business owner replies manually in a chat, the workflow sees the message is `fromMe` and sets `human_mode = true` for that number in Postgres.
+- While human mode is on, the bot stays silent.
+- Human mode expires on its own after **30 minutes** without a message from the owner, and the bot takes over again.
+
+## The part I removed
+
+When someone sends three quick messages ("Hi" / "I need a website" / "for my barbershop"), n8n starts three parallel executions. Each one reads the conversation memory before the others save it, so the bot can greet the same person three times.
+
+I built a proper debounce for it: a buffer table in Postgres, a unique token per execution, a short wait, and only the latest execution processing the whole batch. It worked, but it doubled the complexity of the workflow and introduced new configuration bugs.
+
+So I went back to the job the agent actually has. It only handles the first contact, and a human takes over shortly after. An occasional duplicated greeting is cosmetic; the lead is still qualified. I **reverted to the simple flow** and kept only the handoff. If a future client needs fully automated long conversations, the debounce pattern is documented and ready to come back.
+
+## Networking lessons
+
+Running Docker containers next to services on the host machine caused two different bugs:
+
+- **Container → host:** inside a container, `localhost` is the container itself. Webhook calls failed with `ECONNREFUSED`. The fix is `host.docker.internal`.
+- **Host → container:** Node.js resolved `localhost` to IPv6 (`::1`) first, while Postgres was published only on IPv4. The connection failed with no useful error. The fix is to use `127.0.0.1` explicitly.
+
+## What I'd do next
+
+- Move from in-memory chat history to persistent memory in Postgres.
+- Add a small dashboard with qualified leads per day.
+- Bring back message batching if the agent ever needs to hold longer conversations on its own.

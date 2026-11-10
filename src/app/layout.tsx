@@ -1,70 +1,72 @@
 import '@/styles/globals.css'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 import Navbar from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { ThemeProvider } from '@/components/theme-provider'
-import { inter, outfit } from './fonts'
+import { profile } from '@/lib/data'
+import { sans, mono } from './fonts'
+
+const description =
+  'Full-stack developer based in Dublin. I build web apps with React, Vue.js, TypeScript and Node.js, and the automation behind them with Docker, PostgreSQL, n8n and LLM APIs.'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || profile.siteUrl),
   title: {
-    default: 'Heleno Vitor Matos Leite — Front-End Developer (Vue.js, Ionic, JavaScript)',
-    template: '%s — Heleno Vitor Matos Leite',
+    default: `${profile.name} — Full-Stack Developer`,
+    template: `%s — ${profile.name}`,
   },
-  description:
-    'Front-end developer based in Dublin. Clean, accessible UIs. Contributed to an e-commerce redesign at Odontoprev, building reusable Vue components and improving performance on mobile.',
-  icons: {
-    icon: '/favicon.ico',
-    shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#F4F7FB' },
-    { media: '(prefers-color-scheme: dark)', color: '#031A6B' },
-  ],
-  alternates: {
-    canonical: '/',
-  },
+  description,
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Heleno Vitor Matos Leite — Front-End Developer',
-    description:
-      'Front-end developer based in Dublin. Vue.js, Ionic, JavaScript. Accessible UI and mobile performance.',
-    images: ['/og.png'],
+    title: `${profile.name} — Full-Stack Developer`,
+    description,
+    images: ['/og'],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Heleno Vitor Matos Leite — Front-End Developer',
-    description: 'Vue.js, Ionic, JavaScript. Accessible UI and mobile performance.',
-    images: ['/og.png'],
-  },
-  verification: {
-    other: { 'google-site-verification': 'REPLACE_IF_NEEDED' },
+    title: `${profile.name} — Full-Stack Developer`,
+    description,
+    images: ['/og'],
   },
 }
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#09090b' },
+  ],
+}
+
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const personLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: profile.fullName,
+    alternateName: profile.name,
+    jobTitle: profile.role,
+    url: profile.siteUrl,
+    sameAs: [profile.linkedin, profile.github],
+    address: { '@type': 'PostalAddress', addressLocality: 'Dublin', addressCountry: 'IE' },
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <meta name="google" content="notranslate" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-      </head>
-      <body className={`min-h-screen bg-app text-app antialiased overflow-x-hidden ${inter.variable} ${outfit.variable} font-sans`}>
+      <body className={`${sans.variable} ${mono.variable} min-h-screen`}>
         <ThemeProvider>
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
+          >
+            Skip to content
+          </a>
           <Navbar />
           <main id="main-content">{children}</main>
           <Footer />
         </ThemeProvider>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'Person', name: 'Heleno Vitor Matos Leite' }) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }} />
       </body>
     </html>
   )

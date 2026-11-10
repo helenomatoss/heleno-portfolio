@@ -1,0 +1,34 @@
+---
+title: "Auto-generated tech blog"
+date: "2025-12-04"
+summary: "Technical challenge: a blog that writes one new technical article every day with an LLM, served by a containerised stack on AWS."
+stack: ["React", "Vite", "TypeScript", "Node.js", "Express", "SQLite", "Docker", "AWS ECR", "AWS CodeBuild", "AWS EC2"]
+role: "Built solo"
+context: "Technical challenge for Assimetria"
+links:
+  repo: "https://github.com/helenomatoss/assimetria-auto-blog"
+---
+
+## The brief
+
+Build a blog that generates a new technical article every day using an AI provider, stores it, exposes it through an API and shows it in a simple UI. Then deploy the whole thing to AWS with containers.
+
+## Back end
+
+- **Node.js + Express + TypeScript** API with two endpoints: `GET /articles` and `GET /articles/:id`.
+- **SQLite** stored on disk, seeded with initial articles on first run.
+- A daily **`node-cron`** job calls an LLM through **OpenRouter**, generates the article and saves it.
+
+## Front end
+
+**React + Vite + TypeScript**, with a list of the latest articles and a detail page. The API base URL comes from an environment variable, so the same build works locally and in production.
+
+## Infrastructure
+
+- Separate **Docker** images for the front end and the back end, plus Docker Compose for local development.
+- **AWS CodeBuild** builds both images from the repository using `buildspec.yml` and pushes them to **ECR**.
+- An **EC2** instance runs a small deploy script: log in to ECR, pull the latest images and restart both containers.
+
+## What I took from it
+
+Splitting the pipeline into build (CodeBuild), registry (ECR) and runtime (EC2) made each step easy to debug on its own. If I took it further, I'd move the database to a managed Postgres and replace the deploy script with a proper CI/CD trigger.
